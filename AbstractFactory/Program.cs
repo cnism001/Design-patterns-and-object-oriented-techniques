@@ -129,11 +129,14 @@
         static void Main(string[] args)
         {
             // TODO#7: Initialize Printer that uses Singleton pattern
+            Printer printer = Printer.GetInstance();
             // TODO#8: Test that the created Printer works, by calling the Print method
-
+            printer.Print("Testing that Printer works");
             // TODO#9: Ensure that only one Printer instance is used throughout the application.
             //         Try to create new Printer object and compare the two objects to check,
+            Printer testprinter = Printer.GetInstance();
             //         that the new printer object is the same instance
+            Console.WriteLine("Checking if printer equals testprinter" + (printer == testprinter));
 
             // TODO#10: Use Abstract Factory to create different types of exams.
         }
