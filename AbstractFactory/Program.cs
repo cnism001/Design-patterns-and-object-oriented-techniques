@@ -42,52 +42,83 @@
     // Concrete Factory for MathExam
     public class MathExamFactory : ExamFactory
     {
+        private readonly Printer printer;
+
+        public MathExamFactory(Printer printer)
+        {
+            this.printer = printer;
+        }
         public override ExamUI CreateExam()
         {
-            return new MathExam();
+            return new MathExam(printer);
         }
     }
     // Concrete Factory for ScienceExam
     public class ScienceExamFactory : ExamFactory
     {
+        private readonly Printer printer;
+
+        public ScienceExamFactory(Printer printer)
+        {
+            this.printer = printer;
+        }
         public override ExamUI CreateExam()
         {
-            return new ScienceExam();
+            return new ScienceExam(printer);
         }
     }
 
     // Concrete Factory for ProgrammingExam
     public class ProgrammingExamFactory : ExamFactory
     {
+        private readonly Printer printer;
+
+        public ProgrammingExamFactory(Printer printer)
+        {
+            this.printer = printer;
+        }
         public override ExamUI CreateExam()
         {
-            return new ProgrammingExam();
+            return new ProgrammingExam(printer);
         }
     }
     public class MathExam: ExamUI
     {
+        //Initializing Printer class
+        private readonly Printer printer;
+        public MathExam(Printer printer)
+        {
+            this.printer = printer;
+        }
         public void Conduct()
         {
             // Output: "Conducting Math Exam", should use Printer class to print the message
-            Console.WriteLine("Conducting Math Exam");
+            printer.Print("Conducting Math Exam");
         }
 
         public void Evaluate()
         {
             // Output: "Evaluating Math Exam", should use Printer class to print the message
-            Console.WriteLine("Evaluating Math Exam");
+            printer.Print("Evaluating Math Exam");
         }
 
         public void PublishResults()
         {
             // Output: "Publishing Math Exam Results", should use Printer class to print the message
-            Console.WriteLine("Publishing Math Exam Results");
+            printer.Print("Publishing Math Exam Results");
         }
     }
 
     // ScienceExam class (TODO#5)
     public class ScienceExam : ExamUI
     {
+        //Initializing Printer class
+        private readonly Printer printer;
+        public ScienceExam(Printer printer)
+        {
+            this.printer = printer;
+        }
+
         public void Conduct()
         {
             Console.WriteLine("Conducting Science Exam");
@@ -107,6 +138,13 @@
     // ProgrammingExam class (TODO#6)
     public class ProgrammingExam : ExamUI
     {
+        //Initializing Printer class
+        private readonly Printer printer;
+        public ProgrammingExam(Printer printer)
+        {
+            this.printer = printer;
+        }
+
         public void Conduct()
         {
             Console.WriteLine("Conducting Programming Exam");
@@ -136,9 +174,26 @@
             //         Try to create new Printer object and compare the two objects to check,
             Printer testprinter = Printer.GetInstance();
             //         that the new printer object is the same instance
-            Console.WriteLine("Checking if printer equals testprinter" + (printer == testprinter));
+            Console.WriteLine("Checking if printer equals testprinter" + "=" + (printer == testprinter));
 
             // TODO#10: Use Abstract Factory to create different types of exams.
+            ExamFactory mathExamFactory = new MathExamFactory(printer);
+            ExamUI mathExam = mathExamFactory.CreateExam();
+            mathExam.Conduct();
+            mathExam.Evaluate();
+            mathExam.PublishResults();
+
+            ExamFactory scienceExamFactory = new ScienceExamFactory(printer);
+            ExamUI scienceExam = scienceExamFactory.CreateExam();
+            scienceExam.Conduct();
+            scienceExam.Evaluate();
+            scienceExam.PublishResults();
+
+            ExamFactory programmingExamFactory = new ProgrammingExamFactory(printer);
+            ExamUI programmingExam = programmingExamFactory.CreateExam();
+            programmingExam.Conduct();
+            programmingExam.Evaluate();
+            programmingExam.PublishResults();
         }
     }
 
