@@ -24,7 +24,30 @@
     // Class template for Exam classes
     // TODO#2: Convert to use Abstract Factory pattern
     // Create an Exam interface and an Abstract Factory to manage the creation of different exam types.
-    public class MathExam
+
+    // Abstract ExamUI interface
+    public interface ExamUI
+    {
+        void Conduct();
+        void Evaluate();
+        void PublishResults();
+    }
+
+    // Abstract Exam Factory
+    public abstract class ExamFactory
+    {
+        public abstract ExamUI CreateExam();
+    }
+
+    // Concrete Factory for MathExam
+    public class MathExamFactory : ExamFactory
+    {
+        public override ExamUI CreateExam()
+        {
+            return new MathExam();
+        }
+    }
+    public class MathExam: ExamUI
     {
         public void Conduct()
         {
