@@ -47,27 +47,81 @@
             return new MathExam();
         }
     }
+    // Concrete Factory for ScienceExam
+    public class ScienceExamFactory : ExamFactory
+    {
+        public override ExamUI CreateExam()
+        {
+            return new ScienceExam();
+        }
+    }
+
+    // Concrete Factory for ProgrammingExam
+    public class ProgrammingExamFactory : ExamFactory
+    {
+        public override ExamUI CreateExam()
+        {
+            return new ProgrammingExam();
+        }
+    }
     public class MathExam: ExamUI
     {
         public void Conduct()
         {
             // Output: "Conducting Math Exam", should use Printer class to print the message
+            Console.WriteLine("Conducting Math Exam");
         }
 
         public void Evaluate()
         {
             // Output: "Evaluating Math Exam", should use Printer class to print the message
+            Console.WriteLine("Evaluating Math Exam");
         }
 
         public void PublishResults()
         {
             // Output: "Publishing Math Exam Results", should use Printer class to print the message
+            Console.WriteLine("Publishing Math Exam Results");
         }
     }
 
-    // TODO#5: Add new ScienceExam class
+    // ScienceExam class (TODO#5)
+    public class ScienceExam : ExamUI
+    {
+        public void Conduct()
+        {
+            Console.WriteLine("Conducting Science Exam");
+        }
 
-    // TODO#6: Add another ProgrammingExam class
+        public void Evaluate()
+        {
+            Console.WriteLine("Evaluating Science Exam");
+        }
+
+        public void PublishResults()
+        {
+            Console.WriteLine("Publishing Science Exam Results");
+        }
+    }
+
+    // ProgrammingExam class (TODO#6)
+    public class ProgrammingExam : ExamUI
+    {
+        public void Conduct()
+        {
+            Console.WriteLine("Conducting Programming Exam");
+        }
+
+        public void Evaluate()
+        {
+            Console.WriteLine("Evaluating Programming Exam");
+        }
+
+        public void PublishResults()
+        {
+            Console.WriteLine("Publishing Programming Exam Results");
+        }
+    }
 
     // Main Program
     class Program
