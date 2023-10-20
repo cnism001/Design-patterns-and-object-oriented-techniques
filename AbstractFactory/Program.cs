@@ -4,9 +4,20 @@
     // TODO#1: Convert to use Singleton pattern
     public class Printer
     {
+        private static Printer? instance;
+        private Printer() { }
+        public static Printer GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Printer();
+            }
+            return instance;
+        }
         public void Print(string message)
         {
             // Output: print out the string message 
+            Console.WriteLine(message);
         }
     }
 
